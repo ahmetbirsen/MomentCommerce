@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/productListFragment">
+
+    <fragment
+        android:id="@+id/productListFragment"
+        android:name="com.example.momentcommerce.ProductListFragment"
+        android:label="fragment_product_list"
+        tools:layout="@layout/fragment_product_list" >
+        <action
+            android:id="@+id/action_productListFragment_to_productDetailFragment"
+            app:destination="@id/productDetailFragment" />
+        <action
+            android:id="@+id/action_productListFragment_to_shoppingBagFragment"
+            app:destination="@id/shoppingBagFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/productDetailFragment"
+        android:name="com.example.momentcommerce.ProductDetailFragment"
+        android:label="fragment_product_detail"
+        tools:layout="@layout/fragment_product_detail" />
+    <fragment
+        android:id="@+id/shoppingBagFragment"
+        android:name="com.example.momentcommerce.ShoppingBagFragment"
+        android:label="fragment_shopping_bag"
+        tools:layout="@layout/fragment_shopping_bag" >
+        <action
+            android:id="@+id/action_shoppingBagFragment_to_orderConfirmationFragment"
+            app:destination="@id/orderConfirmationFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderConfirmationFragment"
+        android:name="com.example.momentcommerce.OrderConfirmationFragment"
+        android:label="fragment_order_confirmation"
+        tools:layout="@layout/fragment_order_confirmation" />
+</navigation>
