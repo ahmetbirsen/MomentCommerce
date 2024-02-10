@@ -1,5 +1,102 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">@color/background2</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">@color/gold1</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#040C12</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="blue">#1673DB</color>
+
+
+    <!-- PRİMARY  -->
+    <color name="primary1">#FFA800</color>
+    <color name="primary2">#714A00</color>
+    <color name="primary3">#D88E00</color>
+    <color name="primary4">#C07F00</color>
+    <color name="primary5">#FFB930</color>
+    <color name="primary6">#4DFFA800</color>
+    <!-- SECONDARY  -->
+    <color name="secondary1">#FD7C04</color>
+    <color name="secondary2">#FEB26C</color>
+    <color name="secondary3">#C2762E</color>
+    <color name="secondary4">#D47F2F</color>
+    <color name="secondary5">#FFC48C</color>
+    <color name="secondary6">#40FD7C04</color>
+    <color name="secondary7">#FFDAB7</color>
+    <color name="secondary8">#FFF0E2</color>
+    <!-- TERTİARY  -->
+    <color name="tertiary1">#072712</color>
+    <color name="tertiary2">#466C53</color>
+    <color name="tertiary3">#8AA593</color>
+    <color name="tertiary4">#C0CFC5</color>
+    <color name="tertiary5">#E0E5E2</color>
+    <!-- WHİTE  -->
+    <color name="white2">#F9F9FF</color>
+    <!-- GREY  -->
+    <color name="grey0">#949494</color>
+    <color name="grey1">#A6A6A6</color>
+    <color name="grey2">#BFBFBF</color>
+    <color name="grey3">#CCCCCC</color>
+    <color name="grey4">#D9D9D9</color>
+    <color name="grey5">#EBEBEB</color>
+    <color name="grey6">#F2F2F2</color>
+    <color name="grey7">#F7F7F7</color>
+    <color name="grey8">#F8F8F8</color>
+    <!-- DANGER  -->
+    <color name="danger1">#DC3545</color>
+    <color name="danger2">#F26559</color>
+    <color name="danger3">#FAE6E8</color>
+    <color name="danger4">#940000</color>
+    <!-- WARNING  -->
+    <color name="warning1">#FF9C07</color>
+    <color name="warning2">#FFC107</color>
+    <color name="warning3">#FFECB5</color>
+    <color name="warning4">#FFFBF0</color>
+    <!-- SUCCESS  -->
+    <color name="success1">#45B535</color>
+    <color name="success2">#76BF4C</color>
+    <color name="success3">#98CF79</color>
+    <color name="success4">#BADFA5</color>
+    <color name="success5">#DDEFD2</color>
+    <color name="success6">#F1F9ED</color>
+    <color name="success7">#F9FFF6</color>
+    <!-- OTHER  -->
+    <color name="other1">#97A8CB</color>
+    <color name="other2">#00B4D8</color>
+    <color name="other3">#0077B6</color>
+    <color name="other4">#00CCBE</color>
+    <color name="other5">#C5F3FC</color>
+    <color name="other6">#6BCCFF</color>
+    <color name="other7">#D0EFFF</color>
+    <color name="other8">#C9C2FF</color>
+    <color name="other9">#738E13</color>
+    <color name="other10">#FCA5A5</color>
+    <color name="other11">#F2FBFF</color>
+    <!-- GOLD -->
+    <color name="gold1">#DEA017</color>
+    <color name="gold2">#FFC035</color>
+    <color name="gold3">#FBDFA2</color>
+
+    <!-- BLACK -->
+    <color name="black2">#3A3A3A</color>
+    <color name="transparent">#80FFFFFF</color>
+    <color name="transparent2">#20FFFFFF</color>
+    <color name="transparent3">#30FFFFFF</color>
+    <color name="transparent4">#40FFFFFF</color>
+    <color name="transparent5">#50FFFFFF</color>
+    <color name="transparent6">#60FFFFFF</color>
+    <color name="transparent7">#70FFFFFF</color>
+    <color name="transparent8">#80FFFFFF</color>
+    <color name="transparent9">#90FFFFFF</color>
+    <color name="transparent10">#00000000</color>
+
+
+    <color name="colorDividerView">#ECECEC</color>
+
+    <!-- BACKGROUND -->
+
+    <color name="background">#FFF9F9</color>
+    <color name="background2">#FC7F0B</color>
 </resources>
