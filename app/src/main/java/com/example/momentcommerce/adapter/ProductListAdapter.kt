@@ -2,7 +2,10 @@ package com.example.momentcommerce.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +14,8 @@ import com.example.momentcommerce.databinding.FragmentOrderConfirmationBinding
 import com.example.momentcommerce.databinding.ItemProductBinding
 import com.example.momentcommerce.model.Product
 import javax.inject.Inject
+import kotlin.math.pow
+import kotlin.math.roundToInt
 
 class ProductListAdapter @Inject constructor() : RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {
     class ProductViewHolder(val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root)
@@ -34,15 +39,11 @@ class ProductListAdapter @Inject constructor() : RecyclerView.Adapter<ProductLis
         holder.itemView.apply {
             itemView.productName.text = currentItem.name
             itemView.productPrice.text = (currentItem.price ?: 0.0 .toString()).toString()
-            val resName = currentItem.imageName ?: ""  // Ürünün resim adını alın
-            println("resName : $resName")
-            val resId = context.resources.getIdentifier(resName, "drawable", context.packageName)  // Resmin kaynak kimliğini alın
-            println("resId : $resId")
-
+            val resName = currentItem.imageName ?: ""
+            val resId = context.resources.getIdentifier(resName, "drawable", context.packageName)
             if (resId != 0) {
-                itemView.productImage.setImageResource(resId)  // Resmi ImageView'a ayarlayın
+                itemView.productImage.setImageResource(resId)
             } else {
-                // Resim bulunamazsa, varsayılan bir resim ayarlayabilirsiniz
                 itemView.productImage.setImageResource(R.drawable.ic_launcher_foreground)
             }
             setOnClickListener {
@@ -50,6 +51,52 @@ class ProductListAdapter @Inject constructor() : RecyclerView.Adapter<ProductLis
                     it(currentItem.id.toString())
                 }
             }
+        }
+
+        var likeVectorIsClicked = false
+        itemView.likeBtn.setOnClickListener {
+            likeVectorIsClicked = !likeVectorIsClicked
+            if (likeVectorIsClicked) {
+                itemView.likeBtn.setColorFilter(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.primary1
+                    )
+                )
+            } else {
+                itemView.likeBtn.clearColorFilter()
+            }
+        }
+
+        itemView.addToBag.setOnClickListener {
+            itemView.addToBag.visibility = View.GONE
+            itemView.bagCard.visibility = View.VISIBLE
+            itemView.productCount.text = "1"
+            itemView.productAmountPrice.text = currentItem.price.toString()
+        }
+
+        itemView.increaseCount.setOnClickListener {
+            var amount = itemView.productCount.text.toString().toDouble()
+            var totalPrice = itemView.productAmountPrice.text.toString().toDouble()
+            amount++
+            totalPrice = roundDecimal((totalPrice + (currentItem.price ?: 0.0) ),3)
+
+            itemView.productCount.text = amount.toString()
+            itemView.productAmountPrice.text = totalPrice.toString()
+        }
+
+        itemView.decreaseCount.setOnClickListener {
+            var amount = itemView.productCount.text.toString().toDouble()
+            var totalPrice = itemView.productAmountPrice.text.toString().toDouble()
+            amount--
+            totalPrice = roundDecimal((totalPrice - (currentItem.price ?: 0.0) ),2)
+            if (amount <= 0.0){
+                itemView.productCount.text = "1"
+                itemView.addToBag.visibility = View.VISIBLE
+                itemView.bagCard.visibility = View.GONE
+            }
+            itemView.productCount.text = amount.toString()
+            itemView.productAmountPrice.text = totalPrice.toString()
         }
     }
 
@@ -71,4 +118,9 @@ class ProductListAdapter @Inject constructor() : RecyclerView.Adapter<ProductLis
     var products: MutableList<Product>
         get() = recyclerListDiffer.currentList
         set(value) = recyclerListDiffer.submitList(value)
+
+    private fun roundDecimal(number: Double, decimalPlaces: Int): Double {
+        val factor = 10.0.pow(decimalPlaces)
+        return (number * factor).roundToInt() / factor
+    }
 }

@@ -3,8 +3,9 @@ package com.example.momentcommerce.view
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.momentcommerce.R
 import com.example.momentcommerce.adapter.ProductListAdapter
@@ -20,15 +21,22 @@ class ProductListFragment @Inject constructor(
 ) : Fragment(R.layout.fragment_product_list) {
 
     private var fragmentBinding : FragmentProductListBinding? = null
-    private lateinit var productListViewModel: ProductListViewModel
+    private val productListViewModel : ProductListViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        productListViewModel = ViewModelProvider(this).get(ProductListViewModel::class.java)
 
         val binding = FragmentProductListBinding.bind(view)
 
+        binding.goBag.setOnClickListener {
+            findNavController().navigate(ProductListFragmentDirections.actionProductListFragmentToShoppingBagFragment())
+        }
+
         observeProductList()
+        productListAdapter.setOnItemClickListener { productId ->
+            findNavController().navigate(ProductListFragmentDirections.actionProductListFragmentToProductDetailFragment())
+            println("Product İd : $productId")
+        }
         fragmentBinding = binding
     }
 

@@ -28,6 +28,7 @@
                 android:id="@+id/productImage"
                 android:layout_width="0dp"
                 android:layout_height="200dp"
+                android:layout_marginTop="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -99,6 +100,7 @@
                 android:paddingTop="8dp"
                 android:paddingRight="16dp"
                 android:paddingBottom="8dp"
+                android:visibility="visible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout36">
@@ -128,7 +130,7 @@
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
-                android:visibility="visible"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/addToBag">
@@ -191,7 +193,7 @@
                             app:layout_constraintTop_toTopOf="parent" />
 
                         <TextView
-                            android:id="@+id/amountTV"
+                            android:id="@+id/productCount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="4dp"
@@ -238,15 +240,6 @@
                     android:layout_marginRight="4dp"
                     app:srcCompat="@drawable/baseline_star_24" />
 
-                <TextView
-                    android:id="@+id/begeniSayisi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:fontFamily="sans-serif-medium"
-                    android:text="1"
-                    android:textColor="@color/black2"
-                    android:textSize="14sp" />
             </LinearLayout>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
