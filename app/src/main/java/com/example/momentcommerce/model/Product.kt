@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.*
 @Serializable
 data class Product(
-	val imageName: String? = null,
+	@SerializedName("image_name") var imageName: String? = null,
 	val color: String? = null,
 	val price: Double? = null,
 	val name: String? = null,
