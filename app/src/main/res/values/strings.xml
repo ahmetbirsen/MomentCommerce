@@ -7,4 +7,6 @@
     <string name="total_amount">Total Amount</string>
     <string name="checkout_button">Checkout Button</string>
     <string name="title_products">Products</string>
+    <string name="order_confirmation">Order Confirmation</string>
+    <string name="close_btn">Close Button</string>
 </resources>

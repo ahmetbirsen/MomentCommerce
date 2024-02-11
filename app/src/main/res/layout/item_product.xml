@@ -36,7 +36,7 @@
                     app:srcCompat="@drawable/product_blazer" />
 
                 <TextView
-                    android:id="@+id/urunAdi"
+                    android:id="@+id/productName"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -50,7 +50,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/urunImage" />
+                    app:layout_constraintTop_toBottomOf="@+id/productImage" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout36"
@@ -62,7 +62,7 @@
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/urunAdi">
+                    app:layout_constraintTop_toBottomOf="@+id/productName">
 
                     <TextView
                         android:id="@+id/textView299"
@@ -76,7 +76,7 @@
                         android:textStyle="bold" />
 
                     <TextView
-                        android:id="@+id/projeBirimFiyat"
+                        android:id="@+id/productPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -88,7 +88,7 @@
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/listeyeEkle"
+                    android:id="@+id/addToBag"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -124,7 +124,7 @@
                 </LinearLayout>
 
                 <FrameLayout
-                    android:id="@+id/sepetIslem"
+                    android:id="@+id/bagCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
@@ -133,7 +133,7 @@
                     android:visibility="visible"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/listeyeEkle">
+                    app:layout_constraintTop_toBottomOf="@+id/addToBag">
 
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -152,7 +152,7 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                android:id="@+id/urunToplamFiyat"
+                                android:id="@+id/productAmountPrice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
@@ -183,7 +183,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/linearLayout27">
 
                             <ImageButton
-                                android:id="@+id/cikarSepet"
+                                android:id="@+id/decreaseCount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@color/transparent2"
@@ -208,7 +208,7 @@
                                 android:textColor="@color/black" />
 
                             <ImageButton
-                                android:id="@+id/ekleSepet"
+                                android:id="@+id/increaseCount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@color/transparent2"
@@ -230,10 +230,10 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintHorizontal_bias="0.5"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sepetIslem">
+                    app:layout_constraintTop_toBottomOf="@+id/bagCard">
 
                     <ImageView
-                        android:id="@+id/begeniIcon"
+                        android:id="@+id/likeBtn"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
