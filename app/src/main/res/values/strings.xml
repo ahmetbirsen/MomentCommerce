@@ -1,5 +1,10 @@
 <resources>
-    <string name="app_name">MomentCommerce</string>
+    <string name="app_name">Altınbaşak</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_sepetim">Shopping Bag</string>
+   <string name="total_item_count">Total Item Count</string>
+    <string name="total_amount">Total Amount</string>
+    <string name="checkout_button">Checkout Button</string>
+    <string name="title_products">Products</string>
 </resources>
