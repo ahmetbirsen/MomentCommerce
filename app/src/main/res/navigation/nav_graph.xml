@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/productListFragment"
-        android:name="com.example.momentcommerce.ProductListFragment"
+        android:name="com.example.momentcommerce.view.ProductListFragment"
         android:label="fragment_product_list"
         tools:layout="@layout/fragment_product_list" >
         <action
@@ -19,12 +19,12 @@
     </fragment>
     <fragment
         android:id="@+id/productDetailFragment"
-        android:name="com.example.momentcommerce.ProductDetailFragment"
+        android:name="com.example.momentcommerce.view.ProductDetailFragment"
         android:label="fragment_product_detail"
         tools:layout="@layout/fragment_product_detail" />
     <fragment
         android:id="@+id/shoppingBagFragment"
-        android:name="com.example.momentcommerce.ShoppingBagFragment"
+        android:name="com.example.momentcommerce.view.ShoppingBagFragment"
         android:label="fragment_shopping_bag"
         tools:layout="@layout/fragment_shopping_bag" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/orderConfirmationFragment"
-        android:name="com.example.momentcommerce.OrderConfirmationFragment"
+        android:name="com.example.momentcommerce.view.OrderConfirmationFragment"
         android:label="fragment_order_confirmation"
         tools:layout="@layout/fragment_order_confirmation" />
 </navigation>
