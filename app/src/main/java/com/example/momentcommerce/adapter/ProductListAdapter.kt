@@ -20,8 +20,8 @@ import kotlin.math.roundToInt
 class ProductListAdapter @Inject constructor() : RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {
     class ProductViewHolder(val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root)
 
-    private var onItemClickListener: ((String) -> Unit)? = null
-    fun setOnItemClickListener(listener: (String) -> Unit) {
+    private var onItemClickListener: ((Product) -> Unit)? = null
+    fun setOnItemClickListener(listener: (Product) -> Unit) {
         onItemClickListener = listener
     }
     override fun onCreateViewHolder(
@@ -48,7 +48,7 @@ class ProductListAdapter @Inject constructor() : RecyclerView.Adapter<ProductLis
             }
             setOnClickListener {
                 onItemClickListener?.let {
-                    it(currentItem.id.toString())
+                    it(currentItem)
                 }
             }
         }

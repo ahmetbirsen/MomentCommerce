@@ -33,9 +33,9 @@ class ProductListFragment @Inject constructor(
         }
 
         observeProductList()
-        productListAdapter.setOnItemClickListener { productId ->
-            findNavController().navigate(ProductListFragmentDirections.actionProductListFragmentToProductDetailFragment())
-            println("Product İd : $productId")
+        productListAdapter.setOnItemClickListener { product ->
+            findNavController().navigate(ProductListFragmentDirections.actionProductListFragmentToProductDetailFragment(product))
+            println("Product İd : $product")
         }
         fragmentBinding = binding
     }

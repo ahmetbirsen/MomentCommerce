@@ -21,7 +21,11 @@
         android:id="@+id/productDetailFragment"
         android:name="com.example.momentcommerce.view.ProductDetailFragment"
         android:label="fragment_product_detail"
-        tools:layout="@layout/fragment_product_detail" />
+        tools:layout="@layout/fragment_product_detail" >
+        <argument
+            android:name="currentProduct"
+            app:argType="com.example.momentcommerce.model.Product" />
+    </fragment>
     <fragment
         android:id="@+id/shoppingBagFragment"
         android:name="com.example.momentcommerce.view.ShoppingBagFragment"
