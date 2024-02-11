@@ -1,13 +1,13 @@
-package com.example.momentcommerce
+package com.example.momentcommerce.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import com.example.momentcommerce.databinding.FragmentProductListBinding
+import com.example.momentcommerce.R
 import com.example.momentcommerce.databinding.FragmentShoppingBagBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ShoppingBagFragment : Fragment(R.layout.fragment_shopping_bag) {
     private var fragmentBinding : FragmentShoppingBagBinding? = null
 

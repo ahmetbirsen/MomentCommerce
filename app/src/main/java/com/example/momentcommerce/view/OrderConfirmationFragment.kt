@@ -1,13 +1,13 @@
-package com.example.momentcommerce
+package com.example.momentcommerce.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import com.example.momentcommerce.R
 import com.example.momentcommerce.databinding.FragmentOrderConfirmationBinding
-import com.example.momentcommerce.databinding.FragmentProductListBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OrderConfirmationFragment : Fragment(R.layout.fragment_order_confirmation) {
 
     private var fragmentBinding : FragmentOrderConfirmationBinding? = null

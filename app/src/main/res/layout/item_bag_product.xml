@@ -20,7 +20,7 @@
             android:scaleType="fitCenter"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/product_blazer"/>
+            android:src="@drawable/blazer_coat"/>
 
         <TextView
             android:id="@+id/textViewSepetUrunAdi"
