@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import com.example.momentcommerce.R
 import com.example.momentcommerce.databinding.FragmentProductDetailBinding
 import com.example.momentcommerce.model.BagProduct
+import com.example.momentcommerce.model.LikedProduct
 import com.example.momentcommerce.util.MathUtils
 import com.example.momentcommerce.viewmodel.ProductDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,6 +21,7 @@ class ProductDetailFragment : Fragment(R.layout.fragment_product_detail) {
     private val args by navArgs<ProductDetailFragmentArgs>()
     private var fragmentBinding: FragmentProductDetailBinding? = null
     private val productDetailViewModel: ProductDetailViewModel by viewModels()
+    private var likeVectorIsClicked = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,13 +31,29 @@ class ProductDetailFragment : Fragment(R.layout.fragment_product_detail) {
         productDetailViewModel.getProductFromBag(args.currentProduct.id ?: 0)
         productDetailViewModel.getLikedProduct(args.currentProduct.id ?: 0)
 
+
+        fragmentBinding?.likeBtn?.setOnClickListener {
+            likeVectorIsClicked = !likeVectorIsClicked
+            if (likeVectorIsClicked) {
+                fragmentBinding?.likeBtn?.setColorFilter(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.white
+                    )
+                )
+                productDetailViewModel.insertLikedProduct(LikedProduct(productID = args.currentProduct.id))
+
+            } else {
+                fragmentBinding?.likeBtn?.clearColorFilter()
+                productDetailViewModel.deleteLikedProduct(args.currentProduct.id ?: 0)
+            }
+        }
+
         observeIsAdded()
 
         observeIsLiked()
 
         oberverBagProduct()
-
-
 
         fragmentBinding?.productNameTitle?.text = args.currentProduct.name
 
@@ -101,21 +119,6 @@ class ProductDetailFragment : Fragment(R.layout.fragment_product_detail) {
                         1
                     )
                 )
-//                onItemBagListener?.let {
-//                    it(
-//                        BagProduct(
-//                            currentItem.imageName,
-//                            currentItem.color,
-//                            currentItem.price,
-//                            currentItem.name,
-//                            currentItem.currency,
-//                            currentItem.id,
-//                            currentItem.category,
-//                            currentItem.price,
-//                            1
-//                        )
-//                    )
-//                }
             }
 
             fragmentBinding?.increaseCount?.setOnClickListener {
@@ -166,6 +169,7 @@ class ProductDetailFragment : Fragment(R.layout.fragment_product_detail) {
                         R.color.white
                     )
                 )
+                likeVectorIsClicked = true
             }
         }
     }
