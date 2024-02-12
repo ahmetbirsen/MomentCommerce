@@ -36,6 +36,7 @@ class ShoppingBagViewModel @Inject constructor(
         _productListBag.postValue(repository.getProductsFromBag())
     }
 
+
     fun updateProductFromBag(productID: Int, newProductCount : Int,newProductAmount : Double) = viewModelScope.launch(
         Dispatchers.IO) {
         repository.updateProduct(productID, newProductCount, newProductAmount)
@@ -43,6 +44,7 @@ class ShoppingBagViewModel @Inject constructor(
 
     fun deleteProductFromBag(productID: Int) = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteProduct(productID)
+        getProductsFromBag()
     }
 
     fun clearBag() = viewModelScope.launch(Dispatchers.IO) {
