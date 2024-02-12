@@ -1,8 +1,14 @@
 package com.example.momentcommerce.di
 
 import android.content.Context
-import com.example.momentcommerce.data.source.ProductJsonSourceImpl
-import com.example.momentcommerce.data.source.ProductsJsonSource
+import androidx.room.Room
+import com.example.momentcommerce.data.source.file.ProductJsonSourceImpl
+import com.example.momentcommerce.data.source.file.ProductsJsonSource
+import com.example.momentcommerce.data.source.room.CommerceDao
+import com.example.momentcommerce.data.source.room.CommerceDatabase
+import com.example.momentcommerce.data.source.room.CommerceRoomSource
+import com.example.momentcommerce.data.source.room.CommerceRoomSourceImpl
+import com.example.momentcommerce.util.Constants.DATABASE_NAME
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -34,4 +40,30 @@ object DataModule {
     fun providesNetworkJson(): Json = Json {
         ignoreUnknownKeys = true
     }
+
+
+
+    @Provides
+    @Singleton
+    fun provideCommerceDatabase(
+        @ApplicationContext context: Context
+    ): CommerceDatabase = Room
+        .databaseBuilder(
+            context,
+            CommerceDatabase::class.java,
+            DATABASE_NAME
+        )
+        .build()
+
+    @Provides
+    @Singleton
+    fun provideCommerceDao(satellitesDatabase: CommerceDatabase): CommerceDao =
+        satellitesDatabase.commerceDao()
+
+    @Provides
+    @Singleton
+    fun provideRoomDataSource(
+        commerceDao: CommerceDao
+    ): CommerceRoomSource =
+        CommerceRoomSourceImpl(commerceDao)
 }
