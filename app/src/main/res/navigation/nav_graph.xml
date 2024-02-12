@@ -39,5 +39,9 @@
         android:id="@+id/orderConfirmationFragment"
         android:name="com.example.momentcommerce.view.OrderConfirmationFragment"
         android:label="fragment_order_confirmation"
-        tools:layout="@layout/fragment_order_confirmation" />
+        tools:layout="@layout/fragment_order_confirmation" >
+        <action
+            android:id="@+id/action_orderConfirmationFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
+    </fragment>
 </navigation>

@@ -44,7 +44,7 @@
         android:layout_margin="8dp"
         android:fontFamily="sans-serif-condensed-medium"
         android:padding="8dp"
-        android:text="Your order has been placed successfully!"
+        android:text="@string/complete_order"
         android:textColor="@color/success1"
         android:textSize="22sp"
         app:layout_constraintBottom_toTopOf="@+id/frameLayout"
@@ -139,7 +139,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginRight="5dp"
                             android:fontFamily="sans-serif-medium"
-                            android:text="00.00"
                             android:textColor="@color/black" />
 
                         <TextView
