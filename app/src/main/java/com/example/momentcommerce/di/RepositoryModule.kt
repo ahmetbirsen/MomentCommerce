@@ -2,7 +2,8 @@ package com.example.momentcommerce.di
 
 import com.example.momentcommerce.data.repo.ProductRepositoryImpl
 import com.example.momentcommerce.data.repo.ProductsRepository
-import com.example.momentcommerce.data.source.ProductsJsonSource
+import com.example.momentcommerce.data.source.file.ProductsJsonSource
+import com.example.momentcommerce.data.source.room.CommerceRoomSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,9 +19,9 @@ object RepositoryModule {
     @Provides
     fun provideProductRepository(
         productJsonSource: ProductsJsonSource,
-
-    ): ProductsRepository {
-        return ProductRepositoryImpl(productJsonSource)
+        productRoomSource : CommerceRoomSource
+        ): ProductsRepository {
+        return ProductRepositoryImpl(productJsonSource, productRoomSource)
     }
 
 }
