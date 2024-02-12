@@ -3,6 +3,7 @@ package com.example.momentcommerce.view
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -33,7 +34,18 @@ class ShoppingBagFragment @Inject constructor(
         observeProductListFromBag()
 
         fragmentBinding?.confirmBasket?.setOnClickListener {
-            findNavController().navigate(ShoppingBagFragmentDirections.actionShoppingBagFragmentToOrderConfirmationFragment())
+            val builder: AlertDialog.Builder = AlertDialog.Builder(requireContext())
+            builder
+                .setMessage("Are you sure you want to order?")
+                .setTitle("Order Confirmation")
+                .setPositiveButton("Yes") { dialog, which ->
+                    findNavController().navigate(ShoppingBagFragmentDirections.actionShoppingBagFragmentToOrderConfirmationFragment())
+                }
+                .setNegativeButton("No") { dialog, which ->
+                }
+
+            val dialog: AlertDialog = builder.create()
+            dialog.show()
         }
 
         productBagAdapter.setOnItemUpdateListener {
