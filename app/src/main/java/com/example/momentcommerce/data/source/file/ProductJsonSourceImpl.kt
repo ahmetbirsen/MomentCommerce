@@ -18,7 +18,6 @@ class ProductJsonSourceImpl(
                 val productListType = object : TypeToken<List<Product>>() {}.type
                 val productsList: List<Product> = Gson().fromJson(reader, productListType)
                 for (product in productsList){
-                    println(product.imageName)
                     product.imageName = product.imageName?.replace("-", "_")
                 }
                 productsList

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.viewModelScope
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +16,10 @@ import com.example.momentcommerce.databinding.ItemProductBinding
 import com.example.momentcommerce.model.BagProduct
 import com.example.momentcommerce.model.Product
 import com.example.momentcommerce.util.MathUtils.roundDecimal
+import com.example.momentcommerce.viewmodel.ProductListViewModel
+import com.example.momentcommerce.viewmodel.ShoppingBagViewModel
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 import kotlin.math.pow
 import kotlin.math.roundToInt
@@ -23,6 +28,7 @@ class ProductListAdapter @Inject constructor() :
     RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {
     class ProductViewHolder(val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root)
 
+    private var likeVectorIsClicked = false
     private var onItemLikedListener: ((Product) -> Unit) ?= null
     private var onItemDeleteLikedListener: ((Int) -> Unit) ?= null
     private var onItemDeleteFromBagListener: ((BagProduct) -> Unit)? = null
@@ -60,7 +66,6 @@ class ProductListAdapter @Inject constructor() :
         return ProductViewHolder(ui)
     }
 
-    @SuppressLint("DiscouragedApi")
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
         val currentItem = products[position]
         val itemView = holder.binding
@@ -81,7 +86,6 @@ class ProductListAdapter @Inject constructor() :
             }
         }
 
-        var likeVectorIsClicked = false
         itemView.likeBtn.setOnClickListener {
             likeVectorIsClicked = !likeVectorIsClicked
             if (likeVectorIsClicked) {

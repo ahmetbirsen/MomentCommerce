@@ -14,17 +14,19 @@ import com.example.momentcommerce.adapter.ProductListAdapter
 import com.example.momentcommerce.databinding.FragmentProductListBinding
 import com.example.momentcommerce.model.LikedProduct
 import com.example.momentcommerce.viewmodel.ProductListViewModel
+import com.example.momentcommerce.viewmodel.ShoppingBagViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 
 @AndroidEntryPoint
-class ProductListFragment @Inject constructor(
-    private val productListAdapter: ProductListAdapter
-) : Fragment(R.layout.fragment_product_list) {
+class ProductListFragment : Fragment(R.layout.fragment_product_list) {
 
     private var fragmentBinding: FragmentProductListBinding? = null
     private val productListViewModel: ProductListViewModel by viewModels()
+//    private val shoppingBagViewModel :ShoppingBagViewModel by viewModels( )
+    private val productListAdapter: ProductListAdapter by lazy { ProductListAdapter() }
+
     private lateinit var orderList: Array<String>
 
 

@@ -34,7 +34,7 @@ class ProductBagAdapter @Inject constructor() :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
         val ui = ItemBagProductBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ProductBagAdapter.ProductViewHolder(ui)
+        return ProductViewHolder(ui)
     }
 
     override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
