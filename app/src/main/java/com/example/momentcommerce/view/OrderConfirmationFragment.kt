@@ -21,10 +21,25 @@ class OrderConfirmationFragment : Fragment(R.layout.fragment_order_confirmation)
         val binding = FragmentOrderConfirmationBinding.bind(view)
         fragmentBinding = binding
 
+        observeTotalAmount()
+        observeProductCount()
+
         fragmentBinding?.closeBtn?.setOnClickListener {
             orderConfirmationViewModel.clearBag()
             orderConfirmationViewModel.clearLikedProducts()
             findNavController().navigate(OrderConfirmationFragmentDirections.actionOrderConfirmationFragmentToProductListFragment())
+        }
+    }
+
+    private fun observeTotalAmount(){
+        orderConfirmationViewModel.totalAmount.observe(viewLifecycleOwner) {
+            fragmentBinding?.lastTotalProduct?.text = it.toString()
+        }
+    }
+
+    private fun observeProductCount(){
+        orderConfirmationViewModel.totalCount.observe(viewLifecycleOwner){
+            fragmentBinding?.totalCount?.text = it.toString()
         }
     }
 
