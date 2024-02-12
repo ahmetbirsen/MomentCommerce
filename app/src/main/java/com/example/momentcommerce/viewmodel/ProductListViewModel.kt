@@ -25,15 +25,24 @@ class ProductListViewModel @Inject constructor(
 
     val totalAmount: LiveData<Double?> = repository.getProductAmountBag().asLiveData()
 
-
     init {
         getProducts()
     }
 
-
     private fun getProducts() = viewModelScope.launch {
         _productList.postValue(repository.getProducts())
     }
+
+    fun sortProducts(orderType: String) {
+        viewModelScope.launch(Dispatchers.Default) {
+            val sortedProductList = when (orderType) {
+                "price" -> _productList.value?.sortedByDescending { it.price }
+                else -> _productList.value
+            }
+            _productList.postValue(sortedProductList ?: repository.getProducts())
+        }
+    }
+
 
     fun insertProductToBag(productBag : BagProduct) = viewModelScope.launch(Dispatchers.IO) {
         repository.insertProduct(productBag)

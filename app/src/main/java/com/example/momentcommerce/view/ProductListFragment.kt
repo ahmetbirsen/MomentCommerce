@@ -1,8 +1,10 @@
 package com.example.momentcommerce.view
 
+import android.content.DialogInterface
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -21,23 +23,39 @@ class ProductListFragment @Inject constructor(
     private val productListAdapter: ProductListAdapter
 ) : Fragment(R.layout.fragment_product_list) {
 
-    private var fragmentBinding : FragmentProductListBinding? = null
-    private val productListViewModel : ProductListViewModel by viewModels()
+    private var fragmentBinding: FragmentProductListBinding? = null
+    private val productListViewModel: ProductListViewModel by viewModels()
+    private lateinit var orderList: Array<String>
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val binding = FragmentProductListBinding.bind(view)
+        fragmentBinding = binding
+
+        orderList = arrayOf("Price")
+
+        observeProductList()
+
+        fragmentBinding?.sortProduct?.setOnClickListener {
+            sortDialog()
+        }
+
 
         binding.goBag.setOnClickListener {
             findNavController().navigate(ProductListFragmentDirections.actionProductListFragmentToShoppingBagFragment())
         }
 
-        observeProductList()
+
         observeTotalAmount()
 
         productListAdapter.setOnItemClickListener { product ->
-            findNavController().navigate(ProductListFragmentDirections.actionProductListFragmentToProductDetailFragment(product))
+            findNavController().navigate(
+                ProductListFragmentDirections.actionProductListFragmentToProductDetailFragment(
+                    product
+                )
+            )
         }
 
         productListAdapter.setOnItemBagListener {
@@ -60,7 +78,6 @@ class ProductListFragment @Inject constructor(
             productListViewModel.deleteLikedProduct(it)
         }
 
-        fragmentBinding = binding
     }
 
     override fun onDestroy() {
@@ -80,10 +97,27 @@ class ProductListFragment @Inject constructor(
         })
     }
 
-    private fun observeTotalAmount(){
+    private fun sortDialog() {
+        val alertDialogBuilder = AlertDialog.Builder(requireContext())
+        alertDialogBuilder.setTitle("Sort By")
+
+        alertDialogBuilder.setItems(orderList) { dialog: DialogInterface, which: Int ->
+            val selectedOrder = orderList[which].lowercase()
+            productListViewModel.sortProducts(selectedOrder)
+            fragmentBinding?.productsRV?.smoothScrollToPosition(0)
+            dialog.dismiss()
+        }
+
+        val alertDialog = alertDialogBuilder.create()
+        alertDialog.show()
+    }
+
+    private fun observeTotalAmount() {
         productListViewModel.totalAmount.observe(viewLifecycleOwner, Observer {
             fragmentBinding?.totalAmount?.text = it.toString()
         })
     }
+
+
 
 }
