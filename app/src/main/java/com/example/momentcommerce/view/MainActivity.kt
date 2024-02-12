@@ -3,7 +3,7 @@ package com.example.momentcommerce.view
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.momentcommerce.R
-import com.example.momentcommerce.viewmodel.MomentFragmentFactory
+import com.example.momentcommerce.MomentFragmentFactory
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

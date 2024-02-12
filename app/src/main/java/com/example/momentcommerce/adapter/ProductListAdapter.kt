@@ -12,18 +12,46 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.momentcommerce.R
 import com.example.momentcommerce.databinding.FragmentOrderConfirmationBinding
 import com.example.momentcommerce.databinding.ItemProductBinding
+import com.example.momentcommerce.model.BagProduct
 import com.example.momentcommerce.model.Product
+import com.example.momentcommerce.util.MathUtils.roundDecimal
 import javax.inject.Inject
 import kotlin.math.pow
 import kotlin.math.roundToInt
 
-class ProductListAdapter @Inject constructor() : RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {
+class ProductListAdapter @Inject constructor() :
+    RecyclerView.Adapter<ProductListAdapter.ProductViewHolder>() {
     class ProductViewHolder(val binding: ItemProductBinding) : RecyclerView.ViewHolder(binding.root)
 
+    private var onItemLikedListener: ((Product) -> Unit) ?= null
+    private var onItemDeleteLikedListener: ((Int) -> Unit) ?= null
+    private var onItemDeleteFromBagListener: ((BagProduct) -> Unit)? = null
+    private var onItemBagListener: ((BagProduct) -> Unit)? = null
+    private var onItemUpdateBagListener: ((BagProduct) -> Unit)? = null
     private var onItemClickListener: ((Product) -> Unit)? = null
     fun setOnItemClickListener(listener: (Product) -> Unit) {
         onItemClickListener = listener
     }
+
+    fun setOnItemBagListener(listener: (BagProduct) -> Unit) {
+        onItemBagListener = listener
+    }
+
+    fun setOnItemDeleteFromBagListener(listener: (BagProduct) -> Unit) {
+        onItemDeleteFromBagListener = listener
+    }
+
+    fun setOnItemLikedListener(listener: (Product) -> Unit) {
+        onItemLikedListener = listener
+    }
+    fun setOnItemDeleteLikedListener(listener: (Int) -> Unit) {
+        onItemDeleteLikedListener = listener
+    }
+    fun setOnItemUpdateListener(listener: (BagProduct) -> Unit) {
+        onItemUpdateBagListener = listener
+    }
+
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -38,7 +66,7 @@ class ProductListAdapter @Inject constructor() : RecyclerView.Adapter<ProductLis
         val itemView = holder.binding
         holder.itemView.apply {
             itemView.productName.text = currentItem.name
-            itemView.productPrice.text = (currentItem.price ?: 0.0 .toString()).toString()
+            itemView.productPrice.text = (currentItem.price ?: 0.0).toString()
             val resName = currentItem.imageName ?: ""
             val resId = context.resources.getIdentifier(resName, "drawable", context.packageName)
             if (resId != 0) {
@@ -63,8 +91,14 @@ class ProductListAdapter @Inject constructor() : RecyclerView.Adapter<ProductLis
                         R.color.primary1
                     )
                 )
+                onItemLikedListener?.let {
+                    it(currentItem)
+                }
             } else {
                 itemView.likeBtn.clearColorFilter()
+                onItemDeleteLikedListener?.let {
+                    it(currentItem.id!!)
+                }
             }
         }
 
@@ -73,30 +107,92 @@ class ProductListAdapter @Inject constructor() : RecyclerView.Adapter<ProductLis
             itemView.bagCard.visibility = View.VISIBLE
             itemView.productCount.text = "1"
             itemView.productAmountPrice.text = currentItem.price.toString()
+            onItemBagListener?.let {
+                it(
+                    BagProduct(
+                        currentItem.imageName,
+                        currentItem.color,
+                        currentItem.price,
+                        currentItem.name,
+                        currentItem.currency,
+                        currentItem.id,
+                        currentItem.category,
+                        currentItem.price,
+                        1
+                    )
+                )
+            }
         }
 
         itemView.increaseCount.setOnClickListener {
-            var amount = itemView.productCount.text.toString().toDouble()
+            var count = itemView.productCount.text.toString().toInt()
             var totalPrice = itemView.productAmountPrice.text.toString().toDouble()
-            amount++
-            totalPrice = roundDecimal((totalPrice + (currentItem.price ?: 0.0) ),3)
+            count++
+            totalPrice = roundDecimal((totalPrice + (currentItem.price ?: 0.0)), 3)
 
-            itemView.productCount.text = amount.toString()
+            itemView.productCount.text = count.toString()
             itemView.productAmountPrice.text = totalPrice.toString()
+
+            onItemUpdateBagListener?.let {
+                it(
+                    BagProduct(
+                        currentItem.imageName,
+                        currentItem.color,
+                        currentItem.price,
+                        currentItem.name,
+                        currentItem.currency,
+                        currentItem.id,
+                        currentItem.category,
+                        totalPrice,
+                        count.toInt()
+                    )
+                )
+            }
         }
 
         itemView.decreaseCount.setOnClickListener {
-            var amount = itemView.productCount.text.toString().toDouble()
+            var count = itemView.productCount.text.toString().toInt()
             var totalPrice = itemView.productAmountPrice.text.toString().toDouble()
-            amount--
-            totalPrice = roundDecimal((totalPrice - (currentItem.price ?: 0.0) ),2)
-            if (amount <= 0.0){
+            count--
+            totalPrice = roundDecimal((totalPrice - (currentItem.price ?: 0.0)), 2)
+            if (count <= 0.0) {
                 itemView.productCount.text = "1"
                 itemView.addToBag.visibility = View.VISIBLE
                 itemView.bagCard.visibility = View.GONE
+                onItemDeleteFromBagListener?.let {
+                    it(
+                        BagProduct(
+                            currentItem.imageName,
+                            currentItem.color,
+                            currentItem.price,
+                            currentItem.name,
+                            currentItem.currency,
+                            currentItem.id,
+                            currentItem.category,
+                            totalPrice,
+                            count.toInt()
+                        )
+                    )
+                }
+            } else {
+                itemView.productCount.text = count.toString()
+                itemView.productAmountPrice.text = totalPrice.toString()
+                onItemUpdateBagListener?.let {
+                    it(
+                        BagProduct(
+                            currentItem.imageName,
+                            currentItem.color,
+                            currentItem.price,
+                            currentItem.name,
+                            currentItem.currency,
+                            currentItem.id,
+                            currentItem.category,
+                            totalPrice,
+                            count
+                        )
+                    )
+                }
             }
-            itemView.productCount.text = amount.toString()
-            itemView.productAmountPrice.text = totalPrice.toString()
         }
     }
 
@@ -119,8 +215,5 @@ class ProductListAdapter @Inject constructor() : RecyclerView.Adapter<ProductLis
         get() = recyclerListDiffer.currentList
         set(value) = recyclerListDiffer.submitList(value)
 
-    private fun roundDecimal(number: Double, decimalPlaces: Int): Double {
-        val factor = 10.0.pow(decimalPlaces)
-        return (number * factor).roundToInt() / factor
-    }
+
 }
