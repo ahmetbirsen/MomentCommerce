@@ -1,16 +1,11 @@
-package com.example.momentcommerce.data.source
+package com.example.momentcommerce.data.source.file
 
 import android.content.Context
-import android.os.Build
-import androidx.annotation.RequiresApi
 import com.example.momentcommerce.model.Product
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.json.decodeFromStream
 import java.io.InputStreamReader
 
 class ProductJsonSourceImpl(
