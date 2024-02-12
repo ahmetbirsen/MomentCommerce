@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.momentcommerce.R
 import com.example.momentcommerce.adapter.ProductBagAdapter
+import com.example.momentcommerce.adapter.ProductListAdapter
 import com.example.momentcommerce.databinding.FragmentShoppingBagBinding
 import com.example.momentcommerce.viewmodel.ProductListViewModel
 import com.example.momentcommerce.viewmodel.ShoppingBagViewModel
@@ -18,12 +19,15 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ShoppingBagFragment @Inject constructor(
-    private val productBagAdapter: ProductBagAdapter
-    ) : Fragment(R.layout.fragment_shopping_bag) {
+class ShoppingBagFragment
+//@Inject constructor(
+//    private val productBagAdapter: ProductBagAdapter
+//    )
+    : Fragment(R.layout.fragment_shopping_bag) {
 
     private var fragmentBinding : FragmentShoppingBagBinding? = null
     private val shoppingBagViewModel : ShoppingBagViewModel by viewModels()
+    private val productBagAdapter: ProductBagAdapter by lazy { ProductBagAdapter() }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -68,19 +72,23 @@ class ShoppingBagFragment @Inject constructor(
     }
 
     private fun observeProductListFromBag() {
-
-        shoppingBagViewModel.productListBag.observe(viewLifecycleOwner, Observer {
-
-            fragmentBinding?.productBagRV?.apply {
-                adapter = productBagAdapter
-                layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false )
-            }
-            productBagAdapter.products = it.toMutableList()
-        })
+        shoppingBagViewModel.productListBag.observe(viewLifecycleOwner) {
+                fragmentBinding?.productBagRV?.apply {
+                    adapter = productBagAdapter
+                    layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL, false )
+                }
+                productBagAdapter.products = it.toMutableList()
+        }
     }
 
     private fun observeTotalAmount(){
         shoppingBagViewModel.totalAmount.observe(viewLifecycleOwner, Observer {
+            if (it == 0.0){
+                fragmentBinding?.emptyBagMsg?.visibility = View.VISIBLE
+                fragmentBinding?.cardArea?.visibility = View.GONE
+                fragmentBinding?.confirmBasket?.visibility = View.GONE
+                fragmentBinding?.mainArea?.visibility = View.GONE
+            }
             fragmentBinding?.lastTotalProductAmount?.text = it.toString()
         })
     }

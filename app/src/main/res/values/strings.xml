@@ -12,4 +12,5 @@
     <string name="complete_order">Your order has been placed successfully!</string>
     <string name="remove_product_from_bag">Remove From Bag</string>
     <string name="order_product">Order</string>
+    <string name="empty_bag">Bag is Empty!</string>
 </resources>

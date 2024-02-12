@@ -57,7 +57,7 @@
                 android:layout_height="match_parent">
 
                 <FrameLayout
-                    android:id="@+id/frameLayout42"
+                    android:id="@+id/mainArea"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_marginStart="16dp"
@@ -66,7 +66,7 @@
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/tertiary_bordered_background"
                     android:padding="16dp"
-                    app:layout_constraintBottom_toTopOf="@+id/frameLayout2"
+                    app:layout_constraintBottom_toTopOf="@+id/cardArea"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
@@ -100,7 +100,7 @@
 
 
                 <FrameLayout
-                    android:id="@+id/frameLayout2"
+                    android:id="@+id/cardArea"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -210,6 +210,20 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent" />
+
+                <TextView
+                    android:id="@+id/emptyBagMsg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="sans-serif-black"
+                    android:text="@string/empty_bag"
+                    android:textColor="@color/danger1"
+                    android:textSize="22sp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
