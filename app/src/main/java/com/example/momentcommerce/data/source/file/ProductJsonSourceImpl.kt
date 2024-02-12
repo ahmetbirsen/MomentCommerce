@@ -1,7 +1,7 @@
 package com.example.momentcommerce.data.source.file
 
 import android.content.Context
-import com.example.momentcommerce.model.Product
+import com.example.momentcommerce.data.model.Product
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.Dispatchers

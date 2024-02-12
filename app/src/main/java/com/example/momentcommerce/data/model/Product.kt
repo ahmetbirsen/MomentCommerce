@@ -1,4 +1,4 @@
-package com.example.momentcommerce.model
+package com.example.momentcommerce.data.model
 
 import com.google.gson.annotations.SerializedName
 import android.os.Parcelable

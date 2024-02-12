@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_product_detail" >
         <argument
             android:name="currentProduct"
-            app:argType="com.example.momentcommerce.model.Product" />
+            app:argType="com.example.momentcommerce.data.model.Product" />
     </fragment>
     <fragment
         android:id="@+id/shoppingBagFragment"

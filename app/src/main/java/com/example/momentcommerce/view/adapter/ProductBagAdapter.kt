@@ -1,4 +1,4 @@
-package com.example.momentcommerce.adapter
+package com.example.momentcommerce.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.momentcommerce.R
 import com.example.momentcommerce.databinding.ItemBagProductBinding
 import com.example.momentcommerce.databinding.ItemProductBinding
-import com.example.momentcommerce.model.BagProduct
-import com.example.momentcommerce.model.Product
+import com.example.momentcommerce.data.model.BagProduct
+import com.example.momentcommerce.data.model.Product
 import com.example.momentcommerce.util.MathUtils.roundDecimal
 import javax.inject.Inject
 import kotlin.math.pow

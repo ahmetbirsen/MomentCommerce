@@ -10,9 +10,9 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.momentcommerce.R
-import com.example.momentcommerce.adapter.ProductListAdapter
+import com.example.momentcommerce.view.adapter.ProductListAdapter
 import com.example.momentcommerce.databinding.FragmentProductListBinding
-import com.example.momentcommerce.model.LikedProduct
+import com.example.momentcommerce.data.model.LikedProduct
 import com.example.momentcommerce.viewmodel.ProductListViewModel
 import com.example.momentcommerce.viewmodel.ShoppingBagViewModel
 import dagger.hilt.android.AndroidEntryPoint

@@ -3,9 +3,9 @@ package com.example.momentcommerce.data.repo
 import com.example.momentcommerce.data.source.file.ProductsJsonSource
 import com.example.momentcommerce.data.source.room.CommerceDao
 import com.example.momentcommerce.data.source.room.CommerceRoomSource
-import com.example.momentcommerce.model.BagProduct
-import com.example.momentcommerce.model.LikedProduct
-import com.example.momentcommerce.model.Product
+import com.example.momentcommerce.data.model.BagProduct
+import com.example.momentcommerce.data.model.LikedProduct
+import com.example.momentcommerce.data.model.Product
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 

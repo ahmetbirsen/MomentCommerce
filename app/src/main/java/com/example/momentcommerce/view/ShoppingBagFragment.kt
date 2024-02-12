@@ -10,8 +10,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.momentcommerce.R
-import com.example.momentcommerce.adapter.ProductBagAdapter
-import com.example.momentcommerce.adapter.ProductListAdapter
+import com.example.momentcommerce.view.adapter.ProductBagAdapter
+import com.example.momentcommerce.view.adapter.ProductListAdapter
 import com.example.momentcommerce.databinding.FragmentShoppingBagBinding
 import com.example.momentcommerce.viewmodel.ProductListViewModel
 import com.example.momentcommerce.viewmodel.ShoppingBagViewModel

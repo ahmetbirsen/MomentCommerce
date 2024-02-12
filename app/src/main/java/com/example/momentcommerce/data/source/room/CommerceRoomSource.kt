@@ -1,7 +1,7 @@
 package com.example.momentcommerce.data.source.room
 
-import com.example.momentcommerce.model.BagProduct
-import com.example.momentcommerce.model.LikedProduct
+import com.example.momentcommerce.data.model.BagProduct
+import com.example.momentcommerce.data.model.LikedProduct
 import kotlinx.coroutines.flow.Flow
 
 interface CommerceRoomSource {

@@ -1,4 +1,4 @@
-package com.example.momentcommerce.model
+package com.example.momentcommerce.data.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

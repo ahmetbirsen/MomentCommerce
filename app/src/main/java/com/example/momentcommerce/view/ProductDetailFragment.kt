@@ -9,8 +9,8 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import com.example.momentcommerce.R
 import com.example.momentcommerce.databinding.FragmentProductDetailBinding
-import com.example.momentcommerce.model.BagProduct
-import com.example.momentcommerce.model.LikedProduct
+import com.example.momentcommerce.data.model.BagProduct
+import com.example.momentcommerce.data.model.LikedProduct
 import com.example.momentcommerce.util.MathUtils
 import com.example.momentcommerce.viewmodel.ProductDetailViewModel
 import dagger.hilt.android.AndroidEntryPoint

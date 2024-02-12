@@ -4,8 +4,8 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.example.momentcommerce.model.BagProduct
-import com.example.momentcommerce.model.LikedProduct
+import com.example.momentcommerce.data.model.BagProduct
+import com.example.momentcommerce.data.model.LikedProduct
 import kotlinx.coroutines.flow.Flow
 
 

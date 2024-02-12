@@ -1,7 +1,7 @@
 package com.example.momentcommerce.data.source.room
 
-import com.example.momentcommerce.model.BagProduct
-import com.example.momentcommerce.model.LikedProduct
+import com.example.momentcommerce.data.model.BagProduct
+import com.example.momentcommerce.data.model.LikedProduct
 import com.example.momentcommerce.util.MathUtils.roundDecimal
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

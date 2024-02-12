@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.momentcommerce.data.repo.ProductsRepository
-import com.example.momentcommerce.model.BagProduct
-import com.example.momentcommerce.model.Product
+import com.example.momentcommerce.data.model.BagProduct
+import com.example.momentcommerce.data.model.Product
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

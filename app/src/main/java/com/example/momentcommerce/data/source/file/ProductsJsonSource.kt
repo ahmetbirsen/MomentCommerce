@@ -1,6 +1,6 @@
 package com.example.momentcommerce.data.source.file
 
-import com.example.momentcommerce.model.Product
+import com.example.momentcommerce.data.model.Product
 
 interface ProductsJsonSource {
 
