@@ -97,6 +97,7 @@
                     android:id="@+id/productImage"
                     android:layout_width="wrap_content"
                     android:layout_height="300dp"
+                    android:layout_marginTop="24dp"
                     android:backgroundTint="@color/transparent10"
                     android:scaleType="fitCenter"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -169,6 +170,7 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/linearLayout5"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="24dp"
@@ -188,19 +190,26 @@
                         android:id="@+id/productPrice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
+                        android:textColor="@color/success1" />
+
+                    <TextView
+                        android:id="@+id/productCurrency"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-black"
                         android:textColor="@color/success1" />
                 </LinearLayout>
 
                 <FrameLayout
-                    android:id="@+id/sepetIslem"
+                    android:id="@+id/bagOperator"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:visibility="visible"
-                    app:layout_constraintBottom_toTopOf="@+id/sepeteEkle"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginBottom="24dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toTopOf="@+id/addToBagCard"
+                    app:layout_constraintEnd_toStartOf="@+id/removeFromBag"
                     app:layout_constraintStart_toStartOf="parent">
 
 
@@ -221,11 +230,10 @@
                             app:layout_constraintTop_toTopOf="parent">
 
                             <TextView
-                                android:id="@+id/productTotalPrice"
+                                android:id="@+id/productTotalAmount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="sans-serif-medium"
-                                android:text="18.00"
                                 android:textColor="@color/success1"
                                 android:textSize="18sp" />
 
@@ -234,7 +242,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
                                 android:fontFamily="sans-serif-medium"
-                                android:text=" TL"
+                                android:text=" $"
                                 android:textColor="@color/success1"
                                 android:textSize="18sp" />
 
@@ -252,7 +260,7 @@
                             app:layout_constraintTop_toBottomOf="@+id/linearLayout27">
 
                             <ImageButton
-                                android:id="@+id/cikarSepet"
+                                android:id="@+id/decreaseCount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@color/transparent2"
@@ -262,7 +270,7 @@
                                 app:layout_constraintTop_toTopOf="parent" />
 
                             <TextView
-                                android:id="@+id/amountTV"
+                                android:id="@+id/productCount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="4dp"
@@ -273,11 +281,10 @@
                                 android:paddingTop="5dp"
                                 android:paddingRight="24dp"
                                 android:paddingBottom="5dp"
-                                android:text="1"
                                 android:textColor="@color/black" />
 
                             <ImageButton
-                                android:id="@+id/ekleSepet"
+                                android:id="@+id/increaseCount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:background="@color/transparent2"
@@ -288,7 +295,59 @@
                 </FrameLayout>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/sepeteEkle"
+                    android:id="@+id/removeFromBag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="32dp"
+                    android:layout_marginEnd="24dp"
+                    app:cardBackgroundColor="@color/primary1"
+                    app:cardCornerRadius="12dp"
+                    app:contentPaddingBottom="8dp"
+                    app:contentPaddingLeft="8dp"
+                    app:contentPaddingRight="8dp"
+                    app:contentPaddingTop="8dp"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="@+id/bagOperator"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/bagOperator"
+                    app:layout_constraintTop_toTopOf="@+id/bagOperator">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginRight="8dp"
+                                app:srcCompat="@drawable/delete_icon"
+                                app:tint="@color/white" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="sans-serif-medium"
+                                android:text="@string/remove_product_from_bag"
+                                android:textColor="@color/white"
+                                android:textSize="16sp" />
+                        </LinearLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/addToBagCard"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -300,6 +359,7 @@
                     app:contentPaddingLeft="32dp"
                     app:contentPaddingRight="32dp"
                     app:contentPaddingTop="12dp"
+                    android:visibility="gone"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent">

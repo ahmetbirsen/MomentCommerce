@@ -25,4 +25,9 @@ interface CommerceRoomSource {
     suspend fun clearBasketProductTable()
 
     suspend fun clearLikedProductsTable()
+    suspend fun getProductFromBag(productID : Int) : BagProduct
+
+    suspend fun getLikedProduct(productID: Int) : LikedProduct
+
+
 }

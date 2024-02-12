@@ -62,5 +62,13 @@ class ProductRepositoryImpl @Inject constructor(
         productRoomSource.clearLikedProductsTable()
     }
 
+    override suspend fun getProductFromBag(productID: Int): BagProduct {
+        return productRoomSource.getProductFromBag(productID)
+    }
+
+    override suspend fun getLikedProduct(productID: Int): LikedProduct {
+        return productRoomSource.getLikedProduct(productID)
+    }
+
 
 }

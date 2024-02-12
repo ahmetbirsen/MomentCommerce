@@ -56,4 +56,12 @@ class CommerceRoomSourceImpl(
     override suspend fun clearLikedProductsTable() {
         commerceDao.clearLikedProductsTable()
     }
+
+    override suspend fun getProductFromBag(productID: Int): BagProduct {
+        return commerceDao.getProductFromBag(productID)
+    }
+
+    override suspend fun getLikedProduct(productID: Int): LikedProduct {
+        return commerceDao.getLikedProduct(productID)
+    }
 }

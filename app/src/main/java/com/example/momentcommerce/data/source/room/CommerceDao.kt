@@ -15,7 +15,6 @@ interface CommerceDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertProduct(productBagProduct: BagProduct)
 
-
     @Insert
     suspend fun insertLikedProduct(likedProduct: LikedProduct)
 
@@ -42,6 +41,12 @@ interface CommerceDao {
 
     @Query("SELECT SUM(totalAmount) FROM BAG_PRODUCTS")
     fun getTotalAmountFlow(): Flow<Double?>
+
+    @Query("SELECT * FROM BAG_PRODUCTS WHERE id = :productID")
+    suspend fun getProductFromBag(productID: Int) : BagProduct
+
+    @Query("SELECT * FROM LIKED_PRODUCTS WHERE productID = :productID")
+    suspend fun getLikedProduct(productID: Int) : LikedProduct
 
 }
 
